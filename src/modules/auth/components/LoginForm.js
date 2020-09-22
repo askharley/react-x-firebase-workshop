@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Typography, Card, Form, Button, Divider, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigation, useModal } from '../../../shared/hooks';
@@ -6,15 +6,20 @@ import { routeKeys } from '../../../shared/utils/constants';
 import { useLoginForm } from '../hooks';
 import { ForgotPasswordModal } from './modals';
 import { FormTextInput, FormPasswordInput } from '../../../shared/components/form';
+import { getCurrentUser } from '../../../shared/services/authService';
 
 export default function Login() {
   const { push } = useNavigation();
-  const { isLoading, form, login } = useLoginForm();
+  const { form, login } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
+
+  useEffect(() => {
+    if (getCurrentUser()) push(routeKeys.MOVIES);
+  }, []);
 
   const onSubmit = (data) => {
     login(data.email, data.password)
-      .then((res) => push(routeKeys.CHARACTERS))
+      .then((res) => push(routeKeys.MOVIES))
       .catch((err) => message.error(err.message));
   }
 
@@ -36,7 +41,7 @@ export default function Login() {
               </Form.Item>
               <Divider />
               <Form.Item>
-                <Button loading={isLoading} type="primary" htmlType="submit" block>Login</Button>
+                <Button type="primary" htmlType="submit" block>Login</Button>
               </Form.Item>
             </Form>
           </Card>

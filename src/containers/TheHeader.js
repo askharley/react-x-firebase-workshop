@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Menu, Avatar, message } from 'antd';
 import { routeKeys } from '../shared/utils/constants';
-import { useNavigation } from '../shared/hooks';
+import { useNavigation, useModal } from '../shared/hooks';
 import { UserProfileModal } from '../modules/auth/components/modals';
 import { actionCreators } from '../shared/state/authStore';
+import { signOut } from '../shared/services/authService';
 
 export default function TheHeader() {
   const dispatch = useDispatch();
   const { push } = useNavigation();
   const user = useSelector((state) => state.auth.current);
-  const [showUserProfileModal, setShowUserProfileModal] = useState(false);
-
-  const toggleUserProfileModal = () => {
-    setShowUserProfileModal(!showUserProfileModal);
-  }
+  const [showUserProfileModal, toggleUserProfileModal] = useModal();
 
   const handleLogout = () => {
+    signOut();
     dispatch(actionCreators.clearAuthUser());
-    message.success('You successfully logged out.');
     push(routeKeys.LOGIN);
+    message.success('You successfully logged out.');
   }
 
   return (
@@ -31,7 +29,9 @@ export default function TheHeader() {
             <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
           </Menu.SubMenu>}
       </Menu>
-      {user && <UserProfileModal isOpen={showUserProfileModal} toggle={toggleUserProfileModal} user={user} />}
+      {user && <>
+        <UserProfileModal isOpen={showUserProfileModal} toggle={toggleUserProfileModal} />
+      </>}
     </Layout.Header>
   );
 }

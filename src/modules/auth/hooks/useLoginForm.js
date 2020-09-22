@@ -1,21 +1,21 @@
 import { useDispatch } from "react-redux";
 import { Form } from 'antd';
-import useAuthService from "../../../shared/services/authService";
+import { signIn, sendForgotPasswordEmail } from "../../../shared/services/authService";
+import { getUser } from "../../../shared/services/userService";
 import { actionCreators } from "../../../shared/state/authStore";
 
 export default function useLoginForm() {
-  const { isLoading, signIn, sendResetPasswordEmail } = useAuthService();
   const dispatch = useDispatch();
   const [form] = Form.useForm();
 
   const login = (email, password) => {
     return signIn(email, password)
-      .then((res) => dispatch(actionCreators.setAuthUser(res)))
+      .then((authRes) => getUser(authRes.user.uid).then(res => dispatch(actionCreators.setAuthUser(res))))
   }
 
   const resetPassword = (email) => {
-    return sendResetPasswordEmail(email);
+    return sendForgotPasswordEmail(email);
   }
 
-  return { isLoading, form, login, resetPassword };
+  return { form, login, resetPassword };
 }

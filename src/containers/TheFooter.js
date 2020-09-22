@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from 'antd';
+import { remoteConfig } from '../shared/services/firebase';
 
 const TheFooter = () => {
+  const [version, setVersion] = useState('');
+  remoteConfig.fetchAndActivate()
+    .then(() => setVersion(remoteConfig.getString('version')))
+
   return (
     <Layout.Footer style={{ textAlign: 'center' }}>
-      Copyright askharley 2020
+      {version}
     </Layout.Footer>
   );
 }

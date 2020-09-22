@@ -1,39 +1,31 @@
-import { useState } from 'react';
+import { message } from 'antd';
+import { auth } from './firebase';
 
-export default function useAuthService() {
-  const [isLoading, setIsLoading] = useState(false);
+export function getCurrentUser() {
+  return auth().currentUser;
+}
 
-  function signIn(email, password) {
-    setIsLoading(true);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        if (email === 'admin@admin.com' && password === 'admin') {
-          return resolve({
-            id: '62fufrCSpAV9brZWZdOVXPupS8n2',
-            name: 'Kylo Ren',
-            photoUrl: 'https://vignette.wikia.nocookie.net/fortnite/images/b/b3/Kylo_Ren_-_Outfit_-_Fortnite.png/revision/latest?cb=20191222034729'
-          })
-        } else {
-          return reject({
-            message: 'Failed to login. Please try again.'
-          })
-        }
-      }, 2000)
+export function signUp(email, password) {
+  return auth().createUserWithEmailAndPassword(email, password)
+    .catch((err) => {
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          message.error(err.message);
+          break;
+        default:
+          break;
+      }
     });
-  }
+}
 
-  function sendResetPasswordEmail(email) {
-    setIsLoading(true);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        return resolve({
-          statusCode: 200
-        });
-      }, 2000)
-    });
-  }
+export function signIn(email, password) {
+  return auth().signInWithEmailAndPassword(email, password);
+}
 
-  return { isLoading, signIn, sendResetPasswordEmail };
+export function signOut() {
+  return auth().signOut();
+}
+
+export function sendForgotPasswordEmail(email) {
+  return auth().sendPasswordResetEmail(email);
 }
