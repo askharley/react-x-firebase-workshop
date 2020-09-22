@@ -9,7 +9,7 @@ export default function useMovieList() {
   const movies = useSelector((state) => state.movie.list);
 
   useEffect(() => {
-    getMovies() 
+    getMovies()
       .then((res) => dispatch(actionCreators.setMovies(res)));
   }, []);
 

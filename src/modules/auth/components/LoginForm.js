@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Typography, Card, Form, Button, Divider, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigation, useModal } from '../../../shared/hooks';
@@ -6,16 +6,11 @@ import { routeKeys } from '../../../shared/utils/constants';
 import { useLoginForm } from '../hooks';
 import { ForgotPasswordModal } from './modals';
 import { FormTextInput, FormPasswordInput } from '../../../shared/components/form';
-import { getCurrentUser } from '../../../shared/services/authService';
 
 export default function Login() {
   const { push } = useNavigation();
   const { form, login } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
-
-  useEffect(() => {
-    if (getCurrentUser()) push(routeKeys.MOVIES);
-  }, []);
 
   const onSubmit = (data) => {
     login(data.email, data.password)

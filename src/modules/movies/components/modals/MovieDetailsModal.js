@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Image } from 'antd';
-import { PrimaryModal } from '../../../shared/components/modals';
-import { formatTimestampToDate } from '../../../shared/utils/helpers';
+import { PrimaryModal } from '../../../../shared/components/modals';
+import { formatTimestampToDate } from '../../../../shared/utils/helpers';
 
 export default function MovieDetailsModal({ isOpen, toggle, movie }) {
   return (
@@ -19,4 +20,10 @@ export default function MovieDetailsModal({ isOpen, toggle, movie }) {
       </Row>
     </PrimaryModal>
   );
+}
+
+MovieDetailsModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired
 }

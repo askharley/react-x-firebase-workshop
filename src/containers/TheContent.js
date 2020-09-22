@@ -2,7 +2,6 @@ import React, { Suspense } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { Layout } from 'antd';
 
-// routes config
 import routes from '../routes';
 import { routeKeys } from '../shared/utils/constants';
 
