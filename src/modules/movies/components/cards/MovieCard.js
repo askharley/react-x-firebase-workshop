@@ -20,9 +20,9 @@ export default function MovieCard({ movie, displayMovieDetailsModal, handleAddMo
   );
 }
 
-MovieCard.propTypes = {
+MovieCard.propTypes = {  
   movie: PropTypes.object.isRequired,
   displayMovieDetailsModal: PropTypes.func.isRequired,
   handleAddMovieToWatchList: PropTypes.func.isRequired,
-  handleAddMhandleAddMovieToFavouritesovieToWatchList: PropTypes.func.isRequired
+  handleAddMovieToFavourites: PropTypes.func.isRequired
 }

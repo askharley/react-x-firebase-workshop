@@ -6,7 +6,7 @@ import { formatTimestampToDate } from '../../../../shared/utils/helpers';
 
 export default function MovieDetailsModal({ isOpen, toggle, movie }) {
   return (
-    <PrimaryModal isOpen={isOpen} toggle={toggle} title={movie.title}>
+    <PrimaryModal isOpen={isOpen} toggle={toggle} title={movie?.title}>
       <Row>
         <Col span={8}>
           <Image src={movie.posterUrl} />

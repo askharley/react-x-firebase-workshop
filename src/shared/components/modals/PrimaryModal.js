@@ -13,7 +13,7 @@ export default function PrimaryModal({ isOpen, toggle, title, footer = null, chi
 PrimaryModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.any.isRequired
 }
 

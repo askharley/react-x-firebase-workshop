@@ -45,8 +45,8 @@ export default function MovieList() {
             </Typography.Title>
             <Divider />
             <Row gutter={[32, 16]}>
-              {movies.map((movie) => {
-                return <MovieCard movie={movie} displayMovieDetailsModal={displayMovieDetailsModal} handleAddMovieToFavourites={handleAddMovieToFavourites} handleAddMovieToWatchList={handleAddMovieToWatchList} />
+              {movies?.map((movie, index) => {
+                return <MovieCard key={index} movie={movie} displayMovieDetailsModal={displayMovieDetailsModal} handleAddMovieToFavourites={handleAddMovieToFavourites} handleAddMovieToWatchList={handleAddMovieToWatchList} />
               })}
             </Row>
           </Card>
