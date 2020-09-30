@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Avatar } from 'antd';
 import { PrimaryModal } from '../../../../shared/components/modals';
+import { UserContext } from '../../../../shared/context';
 
-export default function UserProfileModal({ isOpen, toggle, user }) {
+export default function UserProfileModal({ isOpen, toggle }) {
+  const [user] = useContext(UserContext);
+    
   return (
     <PrimaryModal isOpen={isOpen} toggle={toggle} title="User Profile">
       <Row>
@@ -13,7 +16,7 @@ export default function UserProfileModal({ isOpen, toggle, user }) {
       </Row>
       <Row style={{ justifyContent: 'center', marginTop: '20px' }}>
         <Col>
-          <div><strong>{user?.name}</strong></div>
+          <div><strong>{user?.person?.name}</strong></div>
         </Col>
       </Row>
     </PrimaryModal>

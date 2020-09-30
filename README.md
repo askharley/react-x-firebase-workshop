@@ -2,13 +2,25 @@
 
 ## Table of Contents
 
-* [Component Libraries](#component-libraries)
 * [Basic usage](#basic-usage)
 * [Build](#build)
+* [Libraries Used](#libraries-used)
 
-## Component Libraries
+## Prerequisites
+- A basic understanding of React hooks ([useState](), [useEffect]())
 
-* 💪  [AntD](https://ant.design/components)
+## System Requirements
+
+- [git]()
+- [NodeJS]()
+- [npm]()
+
+To verify that you have these available in your path, you can run:
+
+```shell
+git --version
+node --version
+npm --version
 ```
 
 ## Basic usage
@@ -28,3 +40,10 @@ Run `build` to build the project. The build artifacts will be stored in the `bui
 # build for production with minification
 $ npm run build
 ```
+
+## Libraries Used
+
+* 👓   [AntD](https://ant.design/components) - For all our component needs
+* ⌚  [dayjs](https://www.npmjs.com/package/dayjs) - Helpers methods for some date utils
+* 🔥   [Firebase](https://www.npmjs.com/package/firebase) - Our complete backend-as-a-service implementation
+* 📝  [prop-types](https://www.npmjs.com/package/prop-types) - Runtime type checking for React props

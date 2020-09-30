@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { PrimaryModal } from '../../../../shared/components/modals';
 import { CustomDataTable } from '../../../../shared/components/table';
 import { getWatchListMovies } from '../../../../shared/services/userService';
 import { listTable } from '../../schemas/table';
+import { UserContext } from '../../../../shared/context';
 
 export default function MovieWatchListModal({ isOpen, toggle, setCurrentMovie, toggleMovieDetailsModal }) {
-  const user = useSelector((state) => state.auth.current);
+  const [user, setUser] = useContext(UserContext);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {

@@ -1,36 +1,31 @@
 
 import React, { useState } from 'react';
-import { Typography, Card, Divider, Row, message } from 'antd';
-import { HeartOutlined, CheckCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import { Typography, Card, Divider, Row } from 'antd';
+import { HeartOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { useModal } from '../../../shared/hooks';
-import { addMovieToFavourites, addMovieToWatchList } from '../../../shared/services/userService';
 import useMovieList from '../hooks/useMovieList';
 import { MovieDetailsModal, MovieWatchListModal, MovieFavouritesModal } from './modals';
 import { TableActionButton } from './buttons';
 import { MovieCard } from './cards';
 
 export default function MovieList() {
+  const { user, movies } = useMovieList();
+  const [currentMovie, setCurrentMovie] = useState({});
   const [showMovieDetailsModal, toggleMovieDetailsModal] = useModal();
   const [showUserWatchListModal, toggleUserWatchListModal] = useModal();
   const [showUserFavouritesModal, toggleUserFavouritesModal] = useModal();
-  const { user, movies } = useMovieList();
-  const [currentMovie, setCurrentMovie] = useState({});
 
   const displayMovieDetailsModal = (data) => {
-    setCurrentMovie(data);
-    toggleMovieDetailsModal();
+    // set the chosen movie
+    // display the modal
   }
 
   const handleAddMovieToFavourites = (movie) => {
-    addMovieToFavourites(user.id, movie)
-      .then(() => message.success('Added movie to your favourites.'))
-      .catch(() => message.error('Failed to add move to your favourites.'))
+
   }
 
   const handleAddMovieToWatchList = (movie) => {
-    addMovieToWatchList(user.id, movie)
-      .then(() => message.success('Added move to your watch list.'))
-      .catch(() => message.error('Failed to add move to your watch list.'))
+
   }
 
   return (

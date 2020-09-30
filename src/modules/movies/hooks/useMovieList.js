@@ -1,15 +1,13 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators } from "../../../shared/state/movieStore";
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../../shared/context';
 
-export default function useMovieList() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.current);
-  const movies = useSelector((state) => state.movie.list);
+export default function useMovieList() {  
+  const [user] = useContext(UserContext);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     // get movies from Firestore
-    // save movies to Redux
+    // set movies to  local storage
   }, []);
 
   return { user, movies };

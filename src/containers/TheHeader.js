@@ -1,21 +1,20 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useContext } from 'react';
 import { Layout, Menu, Avatar, message } from 'antd';
 import { routeKeys } from '../shared/utils/constants';
 import { useNavigation, useModal } from '../shared/hooks';
 import { UserProfileModal } from '../modules/auth/components/modals';
-import { actionCreators } from '../shared/state/authStore';
 import { signOut } from '../shared/services/authService';
+import { UserContext } from '../shared/context';
 
 function TheHeader() {
-  const dispatch = useDispatch();
+
   const { push } = useNavigation();
-  const user = useSelector((state) => state.auth.current);
+  const [user, setUser] = useContext(UserContext);
   const [showUserProfileModal, toggleUserProfileModal] = useModal();
 
   const handleLogout = () => {
-    signOut();
-    dispatch(actionCreators.clearAuthUser());
+    signOut();    
+    setUser(null);
     push(routeKeys.LOGIN);
     message.success('You successfully logged out.');
   }
