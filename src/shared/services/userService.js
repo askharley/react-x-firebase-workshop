@@ -7,29 +7,17 @@ export function getUser(id) {
     .then((res) => ({
       ...res.data(),
       id
-    }));  
+    }));
 }
 
 export function addMovieToWatchList(userId, movie) {
-  return db.collection(firestoreKeys.USERS).doc(userId).collection(firestoreKeys.WATCH_LIST).add(movie);
+
 }
 
 export function addMovieToFavourites(userId, movie) {
-  return db.collection(firestoreKeys.USERS).doc(userId).update({
-    favourites: firebase.firestore.FieldValue.arrayUnion(movie),
-  });
+
 }
 
 export function getWatchListMovies(userId) {
-  const results = [];
 
-  return db.collection(firestoreKeys.USERS).doc(userId).collection(firestoreKeys.WATCH_LIST).get().then((docs) => {
-    docs.forEach((doc) => {
-      results.push({
-        ...doc.data(),
-        id: doc.id
-      });
-    });
-    return results;
-  });
 }

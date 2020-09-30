@@ -5,13 +5,12 @@ import { HeartOutlined, CheckCircleOutlined, SearchOutlined } from '@ant-design/
 import { useModal } from '../../../shared/hooks';
 import { addMovieToFavourites, addMovieToWatchList } from '../../../shared/services/userService';
 import useMovieList from '../hooks/useMovieList';
-import { MovieDetailsModal, SearchMoviesModal, MovieWatchListModal, MovieFavouritesModal } from './modals';
+import { MovieDetailsModal, MovieWatchListModal, MovieFavouritesModal } from './modals';
 import { TableActionButton } from './buttons';
 import { MovieCard } from './cards';
 
 export default function MovieList() {
   const [showMovieDetailsModal, toggleMovieDetailsModal] = useModal();
-  const [showSearchMoviesModal, toggleSearchMoviesModal] = useModal();
   const [showUserWatchListModal, toggleUserWatchListModal] = useModal();
   const [showUserFavouritesModal, toggleUserFavouritesModal] = useModal();
   const { user, movies } = useMovieList();
@@ -42,7 +41,6 @@ export default function MovieList() {
           : <Card>
             <Typography.Title level={3}>
               Movies
-            <TableActionButton label="Search" icon={<SearchOutlined />} onClick={toggleSearchMoviesModal} />
               <TableActionButton label="My Favourites" icon={<HeartOutlined />} onClick={toggleUserFavouritesModal} />
               <TableActionButton label="My Watch List" icon={<CheckCircleOutlined />} onClick={toggleUserWatchListModal} />
             </Typography.Title>
@@ -55,7 +53,6 @@ export default function MovieList() {
           </Card>
       }
       <MovieDetailsModal isOpen={showMovieDetailsModal} toggle={toggleMovieDetailsModal} movie={currentMovie} />
-      <SearchMoviesModal isOpen={showSearchMoviesModal} toggle={toggleSearchMoviesModal} setCurrentMovie={setCurrentMovie} toggleMovieDetailsModal={toggleMovieDetailsModal} />
       <MovieWatchListModal isOpen={showUserWatchListModal} toggle={toggleUserWatchListModal} setCurrentMovie={setCurrentMovie} toggleMovieDetailsModal={toggleMovieDetailsModal} />
       <MovieFavouritesModal isOpen={showUserFavouritesModal} toggle={toggleUserFavouritesModal} movies={user?.favourites} setCurrentMovie={setCurrentMovie} toggleMovieDetailsModal={toggleMovieDetailsModal} />
     </>

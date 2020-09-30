@@ -7,7 +7,7 @@ import { useLoginForm } from '../hooks';
 import { ForgotPasswordModal } from './modals';
 import { FormTextInput, FormPasswordInput } from '../../../shared/components/form';
 
-export default function Login() {
+function Login() {
   const { push } = useNavigation();
   const { form, login } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
@@ -46,3 +46,5 @@ export default function Login() {
     </>
   )
 }
+
+export default Login;

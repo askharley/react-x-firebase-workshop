@@ -9,7 +9,7 @@ const TheSidebar = () => {
 
   return (
     <Layout.Sider>
-      <Typography.Title size={3} style={{color: 'white', padding: '10px'}}>Lockdown Library</Typography.Title>
+      <Typography.Title size={3} style={{color: 'white', padding: '10px'}}>React x Firebase</Typography.Title>
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item onClick={() => push(routeKeys.LOGIN)} key={routeKeys.LOGIN} icon={<LoginOutlined />}>
           Login
@@ -22,4 +22,4 @@ const TheSidebar = () => {
   );
 }
 
-export default React.memo(TheSidebar)
+export default React.memo(TheSidebar);

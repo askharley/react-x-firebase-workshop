@@ -10,7 +10,7 @@ export default function useLoginForm() {
 
   const login = (email, password) => {
     return signIn(email, password)
-      .then((authRes) => getUser(authRes.user.uid).then(res => dispatch(actionCreators.setAuthUser(res))))
+      .then((authRes) => getUser(authRes.user.uid).then((res) => dispatch(actionCreators.setAuthUser(res))));
   }
 
   const resetPassword = (email) => {

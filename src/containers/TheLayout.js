@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { TheSidebar, TheHeader, TheContent, TheFooter } from './index';
 
-export default function TheLayout() {
+function TheLayout() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <TheSidebar />
@@ -14,3 +14,5 @@ export default function TheLayout() {
     </Layout>
   );
 }
+
+export default React.memo(TheLayout);

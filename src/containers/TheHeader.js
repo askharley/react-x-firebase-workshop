@@ -7,7 +7,7 @@ import { UserProfileModal } from '../modules/auth/components/modals';
 import { actionCreators } from '../shared/state/authStore';
 import { signOut } from '../shared/services/authService';
 
-export default function TheHeader() {
+function TheHeader() {
   const dispatch = useDispatch();
   const { push } = useNavigation();
   const user = useSelector((state) => state.auth.current);
@@ -35,3 +35,5 @@ export default function TheHeader() {
     </Layout.Header>
   );
 }
+
+export default React.memo(TheHeader);

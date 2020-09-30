@@ -1,4 +1,4 @@
-# Lockdown Library - A React x Firebase Demo
+# React x Firebase Workshop
 
 ## Table of Contents
 

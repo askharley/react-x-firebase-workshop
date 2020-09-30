@@ -11,8 +11,8 @@ export default function MovieWatchListModal({ isOpen, toggle, setCurrentMovie, t
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    getWatchListMovies(user.id)
-      .then((res) => setMovies(res));
+    // get watch list
+    // set movies
   }, []);
 
   const handleMovieSelection = (movie) => {

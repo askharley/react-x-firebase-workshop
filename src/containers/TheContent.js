@@ -11,7 +11,7 @@ const loading = (
   </div>
 );
 
-const TheContent = () => {
+function TheContent() {
   return (
     <Layout.Content style={{ margin: '25px' }}>
       <Suspense fallback={loading}>
