@@ -2,7 +2,7 @@ import { db } from './firebase';
 import { firestoreKeys } from '../utils/constants';
 
 export function getMovies() {
-  const results = [];
+  let results = [];
 
   return db.collection(firestoreKeys.MOVIES).orderBy('title', 'asc').get().then((docs) => {
     docs.forEach((doc) => {

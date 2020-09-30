@@ -6,7 +6,7 @@ import { getUser } from "../../../shared/services/userService";
 
 export default function useLoginForm() {
   const [form] = Form.useForm();
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
 
   const login = (email, password) => {
     return signIn(email, password)

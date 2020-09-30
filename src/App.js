@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { UserContext } from './shared/context';
 import 'antd/dist/antd.css';
+import { useLocalStorageState } from './shared/hooks/useLocalStorageState';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -12,7 +13,7 @@ const loading = (
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
 export default function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useLocalStorageState('user', null);
 
   return (
     <UserContext.Provider value={[user, setUser]}>

@@ -9,7 +9,7 @@ const TheSidebar = () => {
 
   return (
     <Layout.Sider>
-      <Typography.Title size={3} style={{color: 'white', padding: '10px'}}>React x Firebase</Typography.Title>
+      <Typography.Title size={5} style={{color: 'white', padding: '30px'}}><span role="img" aria-label="react-emoji">⚛️</span> x <span role="img" aria-label="firebase-emoji">🔥</span></Typography.Title>
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item onClick={() => push(routeKeys.LOGIN)} key={routeKeys.LOGIN} icon={<LoginOutlined />}>
           Login

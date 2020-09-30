@@ -7,13 +7,13 @@ import { listTable } from '../../schemas/table';
 import { UserContext } from '../../../../shared/context';
 
 export default function MovieWatchListModal({ isOpen, toggle, setCurrentMovie, toggleMovieDetailsModal }) {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // get watch list
-    // set movies
-  }, []);
+    getWatchListMovies(user.id)
+      .then((res) => setMovies(res));
+  }, [user.id]);
 
   const handleMovieSelection = (movie) => {
     toggle();
