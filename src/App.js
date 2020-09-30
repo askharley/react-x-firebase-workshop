@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import 'antd/dist/antd.css';
-import './scss/style.scss';
 import { UserContext } from './shared/context';
+import 'antd/dist/antd.css';
 
 const loading = (
   <div className="pt-3 text-center">
