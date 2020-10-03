@@ -1,18 +1,8 @@
 import { db } from './firebase';
 import { firestoreKeys } from '../utils/constants';
 
-export function getMovies() {
-  let results = [];
-
-  return db.collection(firestoreKeys.MOVIES).orderBy('title', 'asc').get().then((docs) => {
-    docs.forEach((doc) => {
-      results.push({
-        ...doc.data(),
-        id: doc.id
-      });
-    });
-    return results;
-  });
+export function streamMovies(observer) {
+  return db.collection(firestoreKeys.MOVIES).orderBy('title', 'asc').onSnapshot(observer);
 }
 
 export function getMovie(id) {

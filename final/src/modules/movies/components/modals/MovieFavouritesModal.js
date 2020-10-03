@@ -13,12 +13,13 @@ export default function MovieFavouritesModal({ isOpen, toggle, movies, setCurren
 
   return (
     <PrimaryModal isOpen={isOpen} toggle={toggle} title="My Favourites">
-      <CustomDataTable schema={listTable} data={movies} onClick={handleMovieSelection} />
+      <CustomDataTable pagination={false} schema={listTable} data={movies} onClick={handleMovieSelection} />
     </PrimaryModal>
   );
 }
 
 MovieFavouritesModal.propTypes = {
+  pagination: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
