@@ -1,5 +1,7 @@
 # ⚛️React x 🔥Firebase Workshop
 
+> A workshop to explain how to go about integrating Firebase into your React application. We'll be implementing Authentication, Firestore, Remote Config, Cloud Functions and Hosting.
+
 ## Table of Contents
 
 * [Prerequisites](#prerequisites)
