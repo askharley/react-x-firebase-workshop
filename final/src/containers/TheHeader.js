@@ -7,7 +7,6 @@ import { signOut } from '../shared/services/authService';
 import { UserContext } from '../shared/context';
 
 function TheHeader() {
-
   const { push } = useNavigation();
   const [user, setUser] = useContext(UserContext);
   const [showUserProfileModal, toggleUserProfileModal] = useModal();
@@ -23,7 +22,7 @@ function TheHeader() {
     <Layout.Header style={{ padding: 0, backgroundColor: '#FFFFFF' }}>
       <Menu mode="horizontal" style={{ backgroundColor: 'inherit' }}>
         {user &&
-          <Menu.SubMenu style={{ float: 'right' }} title={<Avatar src={user.photoUrl} />}>
+          <Menu.SubMenu style={{ float: 'right' }} title={<Avatar src={user?.person?.photoUrl} />}>
             <Menu.Item onClick={toggleUserProfileModal}>View Profile</Menu.Item>
             <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
           </Menu.SubMenu>}

@@ -1,20 +1,14 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { PrimaryModal } from '../../../../shared/components/modals';
 import { CustomDataTable } from '../../../../shared/components/table';
 import { listTable } from '../../schemas/table';
 import { UserContext } from '../../../../shared/context';
 import useStreamCollection from '../../../../shared/hooks/useStreamCollection';
-import { useEkko } from 'use-ekko';
 
 export default function MovieWatchListModal({ isOpen, toggle, setCurrentMovie, toggleMovieDetailsModal }) {
-  const [user] = useContext(UserContext);
-  const movieCollection = useStreamCollection(`users/${user.id}/watchlist`);
-  const [movies, setMovies] = useEkko('movies', movieCollection)
-
-  useEffect(() => {
-    setMovies(movieCollection);
-  }, [movieCollection]);
+  const [user] = useContext(UserContext);  
+  const movies = useStreamCollection(`users/${user?.id}/watchlist`);
 
   const handleMovieSelection = (movie) => {
     toggle();

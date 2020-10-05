@@ -3,12 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import { UserContext } from './shared/context';
 import 'antd/dist/antd.css';
 import { useEkko } from 'use-ekko';
-
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
+import { Spin } from 'antd';
 
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
@@ -18,7 +13,7 @@ export default function App() {
   return (
     <UserContext.Provider value={[user, setUser]}>
       <HashRouter>
-        <React.Suspense fallback={loading}>
+        <React.Suspense fallback={<Spin />}>
           <Switch>
             <Route path="/" name="Home" render={props => <TheLayout {...props} />} />
           </Switch>

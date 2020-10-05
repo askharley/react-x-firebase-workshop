@@ -22,7 +22,7 @@ MovieFavouritesModal.propTypes = {
   pagination: PropTypes.bool,
   isOpen: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.array,
   setCurrentMovie: PropTypes.func.isRequired,
   toggleMovieDetailsModal: PropTypes.func.isRequired
 }

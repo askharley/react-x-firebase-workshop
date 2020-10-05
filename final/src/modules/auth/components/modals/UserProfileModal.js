@@ -11,7 +11,7 @@ export default function UserProfileModal({ isOpen, toggle }) {
     <PrimaryModal isOpen={isOpen} toggle={toggle} title="User Profile">
       <Row>
         <Col span={12} offset={6}>
-          <Avatar src={user?.photoUrl} size={250} />
+          <Avatar src={user?.person?.photoUrl} size={250} />
         </Col>
       </Row>
       <Row style={{ justifyContent: 'center', marginTop: '20px' }}>

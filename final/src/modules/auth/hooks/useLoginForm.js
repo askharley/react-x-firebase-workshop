@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Form } from 'antd';
 import { UserContext } from '../../../shared/context';
 import { signIn, sendForgotPasswordEmail } from "../../../shared/services/authService";
-import { getUser } from "../../../shared/services/userService";
+import { streamUser } from '../../../shared/services/userService';
 
 export default function useLoginForm() {
   const [form] = Form.useForm();
@@ -10,7 +10,15 @@ export default function useLoginForm() {
 
   const login = (email, password) => {
     return signIn(email, password)
-      .then((authRes) => console.log(authRes.user.uid));
+      .then((authRes) => streamUser(authRes.user.uid, {
+        next: (docSnapshot) => {
+          const updatedDocument = {
+            ...docSnapshot.data(),
+            id: docSnapshot.id
+          };
+          setUser(updatedDocument);
+        }
+      }));
   }
 
   const resetPassword = (email) => {
