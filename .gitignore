@@ -6,9 +6,6 @@
 /start/.firebase
 /final/.firebase
 
-# testing
-/coverage
-
 # production
 /start/build
 /final/build

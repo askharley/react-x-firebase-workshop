@@ -8,7 +8,7 @@ import { Spin } from 'antd';
 const TheLayout = React.lazy(() => import('./containers/TheLayout'));
 
 export default function App() {
-  const [user, setUser] = useEkko('user', null);
+  const [user, setUser] = useEkko('user');
 
   return (
     <UserContext.Provider value={[user, setUser]}>
