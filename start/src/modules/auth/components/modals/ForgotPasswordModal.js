@@ -6,8 +6,7 @@ import { useLoginForm } from '../../hooks';
 import { FormTextInput, FormSubmitButton } from '../../../../shared/components/form';
 
 export default function ForgotPasswordModal({ isOpen, toggle }) {
-  const [form] = Form.useForm();
-  const { } = useLoginForm();
+  const [form] = Form.useForm();  
 
   return (
     <PrimaryModal isOpen={isOpen} toggle={toggle} title="Forgot Password">

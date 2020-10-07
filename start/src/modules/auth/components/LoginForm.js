@@ -8,7 +8,6 @@ import { FormTextInput, FormPasswordInput } from '../../../shared/components/for
 
 function Login() {
   const [form] = Form.useForm();
-  const { } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
 
   return (
