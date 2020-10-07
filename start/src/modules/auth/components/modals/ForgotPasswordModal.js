@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Divider, Form } from 'antd';
 import { PrimaryModal } from '../../../../shared/components/modals';
-import { useLoginForm } from '../../hooks';
 import { FormTextInput, FormSubmitButton } from '../../../../shared/components/form';
 
 export default function ForgotPasswordModal({ isOpen, toggle }) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col, Typography, Card, Form, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useModal } from '../../../shared/hooks';
-import { useLoginForm } from '../hooks';
 import { ForgotPasswordModal } from './modals';
 import { FormTextInput, FormPasswordInput } from '../../../shared/components/form';
 
