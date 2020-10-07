@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Layout, Menu, Avatar, message } from 'antd';
 import { routeKeys } from '../shared/utils/constants';
 import { useNavigation, useModal } from '../shared/hooks';
 import { UserProfileModal } from '../modules/auth/components/modals';
 import { signOut } from '../shared/services/authService';
+import { UserContext } from '../shared/context';
 
 function TheHeader() {
   const { push } = useNavigation();
-  const user = null;
+  const [user, setUser] = useContext(UserContext);
   const [showUserProfileModal, toggleUserProfileModal] = useModal();
 
   const handleLogout = () => {
