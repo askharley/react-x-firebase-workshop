@@ -18,5 +18,5 @@
 /final/.env
 .vs
 .vscode
-./firebase.json
-./firebaserc
+.firebase.json
+.firebaserc
