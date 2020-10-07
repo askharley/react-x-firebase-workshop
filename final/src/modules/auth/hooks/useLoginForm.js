@@ -1,37 +1,43 @@
 import { useContext } from 'react';
 import { Form } from 'antd';
-import firebase from 'firebase';
 import { UserContext } from '../../../shared/context';
-import { signIn, sendForgotPasswordEmail } from "../../../shared/services/authService";
-import { streamUser } from '../../../shared/services/userService';
-import { auth } from '../../../shared/services/firebase';
+import { signIn, signInWithGoogle, sendForgotPasswordEmail } from "../../../shared/services/authService";
+import { createUserDocument, streamUser } from '../../../shared/services/userService';
 
 export default function useLoginForm() {
   const [form] = Form.useForm();
   const [, setUser] = useContext(UserContext);
 
-  const login = (email, password) => {
+  const loginWithEmailPassword = (email, password) => {
     return signIn(email, password)
-      .then((authRes) => streamUser(authRes.user.uid, {
-        next: (docSnapshot) => {
-          const updatedDocument = {
-            ...docSnapshot.data(),
-            id: docSnapshot.id
-          };
-          setUser(updatedDocument);
-        }
-      }));
+      .then((authRes) => startStream(authRes.user.uid));
   }
 
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .then((result) => alert(result.user.displayName));
+  const loginWithGoogle = () => {
+    return signInWithGoogle()
+      .then((authRes) => startStream(authRes.user.uid));
+  }
+
+  const signUpWithGoogle = () => {
+    return signInWithGoogle()
+      .then((authRes) => createUserDocument(authRes.user));
   }
 
   const resetPassword = (email) => {
     return sendForgotPasswordEmail(email);
   }
 
-  return { form, login, signInWithGoogle, resetPassword };
+  const startStream = (uid) => {
+    streamUser(uid, {
+      next: (docSnapshot) => {
+        const updatedDocument = {
+          ...docSnapshot.data(),
+          id: docSnapshot.id
+        };
+        setUser(updatedDocument);
+      }
+    })
+  }
+
+  return { form, loginWithEmailPassword, loginWithGoogle, signUpWithGoogle, resetPassword };
 }
