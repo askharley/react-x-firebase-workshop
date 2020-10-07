@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Form } from 'antd';
 import { UserContext } from '../../../shared/context';
 import { signIn, signInWithGoogle, sendForgotPasswordEmail } from "../../../shared/services/authService";
-import { createUserDocument, streamUser } from '../../../shared/services/userService';
+import { checkUserExists, createUserDocument, streamUser } from '../../../shared/services/userService';
 
 export default function useLoginForm() {
   const [form] = Form.useForm();
@@ -15,12 +15,13 @@ export default function useLoginForm() {
 
   const loginWithGoogle = () => {
     return signInWithGoogle()
-      .then((authRes) => startStream(authRes.user.uid));
-  }
-
-  const signUpWithGoogle = () => {
-    return signInWithGoogle()
-      .then((authRes) => createUserDocument(authRes.user));
+      .then((authRes) => checkUserExists(authRes.user.uid)
+        .then((res) => {
+          res.exists
+            ? startStream(authRes.user.uid)
+            : createUserDocument(authRes.user)
+              .then(() => startStream(authRes.user.uid))
+        }));
   }
 
   const resetPassword = (email) => {
@@ -39,5 +40,5 @@ export default function useLoginForm() {
     })
   }
 
-  return { form, loginWithEmailPassword, loginWithGoogle, signUpWithGoogle, resetPassword };
+  return { form, loginWithEmailPassword, loginWithGoogle, resetPassword };
 }

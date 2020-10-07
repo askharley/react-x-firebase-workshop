@@ -6,6 +6,10 @@ export function streamUser(id, observer) {
   return db.collection(firestoreKeys.USERS).doc(id).onSnapshot(observer);
 }
 
+export function checkUserExists(uid) {
+  return db.collection(firestoreKeys.USERS).doc(uid).get();
+}
+
 export function createUserDocument(user) {
   return db.collection(firestoreKeys.USERS).doc(user.uid).set({
     person: {

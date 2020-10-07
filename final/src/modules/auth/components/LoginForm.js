@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Typography, Card, Form, Button, Divider, message } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, GoogleOutlined } from '@ant-design/icons';
 import { useNavigation, useModal } from '../../../shared/hooks';
 import { routeKeys } from '../../../shared/utils/constants';
 import { useLoginForm } from '../hooks';
@@ -9,7 +9,7 @@ import { FormTextInput, FormPasswordInput } from '../../../shared/components/for
 
 function Login() {
   const { push } = useNavigation();
-  const { form, loginWithEmailPassword, loginWithGoogle, signInWithGoogle, signUpWithGoogle } = useLoginForm();
+  const { form, loginWithEmailPassword, loginWithGoogle, signInWithGoogle } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
 
   const handleEmailPasswordLogin = (data) => {
@@ -23,12 +23,6 @@ function Login() {
       .then((res) => push(routeKeys.MOVIES))
       .catch((err) => message.error(err.message));
   }
-
-  const handleGoogleSignUp = () => {
-    signUpWithGoogle()
-      .then((res) => message.success('Successfully signed up.'))
-  }
-
 
   return (
     <>
@@ -44,18 +38,15 @@ function Login() {
               }, { required: true, message: 'Please input your email address.' }]} />
               <FormPasswordInput name="password" prefix={<LockOutlined />} label="Password" placeholder="Enter a password" rules={[{ required: true, message: 'Please input your password.' }]} />
               <Form.Item>
+                <Button type="text" onClick={signInWithGoogle}>Sign Up</Button>
                 <Button style={{ float: 'right' }} type="text" onClick={toggleForgotPasswordModal}>Forgot password?</Button>
               </Form.Item>
               <Form.Item>
-                <Button type="text" onClick={signInWithGoogle} danger>Sign Up</Button>
-                <Button style={{ float: 'right' }} type="text" onClick={handleGoogleSignUp} danger>Sign Up with Google</Button>
+                <Button type="primary" htmlType="submit" size='large' block>Login</Button>
               </Form.Item>
               <Divider />
               <Form.Item>
-                <Button type="primary" htmlType="submit" block>Login</Button>
-              </Form.Item>
-              <Form.Item>
-                <Button onClick={handleGoogleSignIn} block danger>Google Login</Button>
+                <Button type="primary" icon={<GoogleOutlined />} size='large' onClick={handleGoogleSignIn} block danger>Login</Button>
               </Form.Item>
             </Form>
           </Card>

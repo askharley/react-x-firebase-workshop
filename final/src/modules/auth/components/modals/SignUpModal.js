@@ -5,16 +5,11 @@ import { PrimaryModal } from '../../../../shared/components/modals';
 import { useLoginForm } from '../../hooks';
 import { FormTextInput, FormSubmitButton } from '../../../../shared/components/form';
 
-export default function ForgotPasswordModal({ isOpen, toggle }) {
-  const [form] = Form.useForm();
-  const { isLoading, resetPassword } = useLoginForm();
+function SignUpModal({ isOpen, toggle }) {
+  const { isLoading, form } = useLoginForm();
 
-  const handleResetPassword = (data) => {
-    resetPassword(data.email)
-      .then((res) => {
-        notification.success({ message: 'Success', description: 'An email with details on how to reset your password has been sent to your email address.' });
-        toggle();
-      })
+  const handleSignUp = (data) => {
+
   }
 
   return (
@@ -30,6 +25,8 @@ export default function ForgotPasswordModal({ isOpen, toggle }) {
     </PrimaryModal>
   );
 }
+
+export default SignUpModal;
 
 ForgotPasswordModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
