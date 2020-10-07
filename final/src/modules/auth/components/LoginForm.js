@@ -9,7 +9,7 @@ import { FormTextInput, FormPasswordInput } from '../../../shared/components/for
 
 function Login() {
   const { push } = useNavigation();
-  const { form, login } = useLoginForm();
+  const { form, login, signInWithGoogle } = useLoginForm();
   const [showForgotPasswordModal, toggleForgotPasswordModal] = useModal();
 
   const onSubmit = (data) => {
@@ -32,6 +32,7 @@ function Login() {
               }, { required: true, message: 'Please input your email address.' }]} />
               <FormPasswordInput name="password" prefix={<LockOutlined />} label="Password" placeholder="Enter a password" rules={[{ required: true, message: 'Please input your password.' }]} />
               <Form.Item>
+                <Button type="text" onClick={signInWithGoogle} danger>Sign In with Google</Button>
                 <Button style={{ float: 'right' }} type="text" onClick={toggleForgotPasswordModal}>Forgot password?</Button>
               </Form.Item>
               <Divider />

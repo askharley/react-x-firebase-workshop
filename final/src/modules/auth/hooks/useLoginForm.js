@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { Form } from 'antd';
+import firebase from 'firebase';
 import { UserContext } from '../../../shared/context';
 import { signIn, sendForgotPasswordEmail } from "../../../shared/services/authService";
 import { streamUser } from '../../../shared/services/userService';
+import { auth } from '../../../shared/services/firebase';
 
 export default function useLoginForm() {
   const [form] = Form.useForm();
@@ -21,9 +23,15 @@ export default function useLoginForm() {
       }));
   }
 
+  const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then((result) => alert(result.user.displayName));
+  }
+
   const resetPassword = (email) => {
     return sendForgotPasswordEmail(email);
   }
 
-  return { form, login, resetPassword };
+  return { form, login, signInWithGoogle, resetPassword };
 }
