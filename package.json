@@ -1,0 +1,22 @@
+{
+  "name": "react-x-firebase-workshop",
+  "version": "1.0.0",
+  "scripts": {
+    "build:start": "npm --prefix start run build",
+    "build:final": "npm --prefix final run build"
+  },
+  "dependencies": {
+    "antd": "^4.6.6",
+    "dayjs": "^1.9.1",
+    "firebase": "^7.22.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "reactstrap": "^8.6.0",
+    "use-ekko": "0.0.3"
+  },
+  "devDependencies": {
+    "react-scripts": "^3.4.3"
+  }
+}
