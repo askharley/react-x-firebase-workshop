@@ -5,7 +5,6 @@ import { CustomDataTable } from '../../../../shared/components/table';
 import { listTable } from '../../schemas/table';
 
 export default function MovieWatchListModal({ isOpen, toggle }) {
-  const user = {};
   const movies = [];
 
   return (

@@ -1,6 +1,6 @@
 {
   "name": "react-x-firebase-workshop-start",
-  "version": "1.0.0",  
+  "version": "1.0.0",
   "dependencies": {
     "antd": "^4.6.4",
     "dayjs": "^1.8.35",

@@ -1,23 +1,11 @@
 import React from 'react';
-import { Layout, Menu, Avatar, message } from 'antd';
-import { routeKeys } from '../shared/utils/constants';
-import { useNavigation, useModal } from '../shared/hooks';
+import { Layout, Menu, Avatar } from 'antd';
+import { useModal } from '../shared/hooks';
 import { UserProfileModal } from '../modules/auth/components/modals';
-import { signOut } from '../shared/services/authService';
 
 function TheHeader() {
-  const { push } = useNavigation();
   const user = null;
   const [showUserProfileModal, toggleUserProfileModal] = useModal();
-
-  const handleLogout = () => {
-    signOut()
-      .then(() => {
-        setUser(null);
-        push(routeKeys.LOGIN);
-        message.success('You successfully logged out.');
-      });
-  }
 
   return (
     <Layout.Header style={{ padding: 0, backgroundColor: '#FFFFFF' }}>
@@ -25,7 +13,7 @@ function TheHeader() {
         {user &&
           <Menu.SubMenu style={{ float: 'right' }} title={<Avatar src={user?.person?.photoUrl} />}>
             <Menu.Item onClick={toggleUserProfileModal}>View Profile</Menu.Item>
-            <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
+            <Menu.Item onClick={() => { }}>Logout</Menu.Item>
           </Menu.SubMenu>}
       </Menu>
       {user && <>
