@@ -14,6 +14,7 @@
 - Learn how we can use Firebase Authentication to manage our users
 - Learn how we can use Firebase Cloud Firestore to store data and receive it in real time
 - Learn how we can use Firebase Remote Config to receive configuration variables from the cloud
+- Learn how we can use Cloud Functions to handle further business operations
 
 ## ⚡ Get Started
 
