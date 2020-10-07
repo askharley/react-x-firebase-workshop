@@ -69,3 +69,4 @@ $ npm start
 * [Firebase](https://www.npmjs.com/package/firebase) - Our complete backend-as-a-service implementation
 * [dayjs](https://www.npmjs.com/package/dayjs) - Helpers methods for some date utils
 * [prop-types](https://www.npmjs.com/package/prop-types) - Runtime type checking for React props
+* [use-ekko](https://github.com/askharley/use-ekko) - Persist state to the local storage
